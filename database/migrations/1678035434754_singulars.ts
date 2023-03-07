@@ -12,10 +12,10 @@ export default class extends BaseSchema {
       table.integer('usuarioID').unsigned(),
       table.foreign('usuarioID').references('usuarios').inTable('id')
       /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
+       * Uses dateTimetz for PostgreSQL and DATETIME2 for MSSQL
        */
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.dateTime('created_at', { useTz: true })
+      table.dateTime('updated_at', { useTz: true })
     }) 
   }
 

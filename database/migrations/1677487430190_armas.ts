@@ -5,10 +5,10 @@ export default class extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id'),
+      table.increments('id').primary(),
       table.string('livrete'),
       table.string('serie'),
-      table.string('marca'),
+      table.string('marca'), 
       table.string('modelo'),
       table.string('tipo'),
       table.boolean('isUsuario'),
@@ -17,14 +17,14 @@ export default class extends BaseSchema {
       table.boolean('isEmpSeg'),
       table.boolean('isEntExterna'),
       table.boolean('isComMun'), 
-      table.integer('usuarioID').unsigned()
+      table.integer('usuarioID')
       table.foreign('usuarioID').references('id').inTable('usuarios')
 
       /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
+       * Uses dateTimetz for PostgreSQL and DATETIME2 for MSSQL
        */
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.dateTime('created_at', { useTz: true })
+      table.dateTime('updated_at', { useTz: true })
     })
   }
 

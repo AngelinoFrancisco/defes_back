@@ -23,7 +23,9 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.group(()=>{
   
 Route.get('/', async () => {
-  return { hello: 'world' }
+  return { 
+    msg: "sistema está na Nuvem!"
+  }
 })
 
 Route.resource('/armas', 'ArmsController').apiOnly() 
@@ -31,4 +33,4 @@ Route.resource('/efectivos', 'EfectivosController').apiOnly()
 
 
 
-}).prefix('/api')
+}).prefix('/')

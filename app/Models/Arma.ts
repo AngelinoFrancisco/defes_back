@@ -31,7 +31,7 @@ export default class Arma extends BaseModel {
   
   @column()
   public isEmpSeg:boolean
-
+ 
   
   @column()
   public isEntExterna:boolean

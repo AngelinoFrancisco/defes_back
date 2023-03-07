@@ -12,8 +12,8 @@ export default class extends BaseSchema {
       table.string('genero'),
       table.integer('usuarioID').unsigned(),
       table.foreign('usuarioID').references('usuarios').inTable('id')
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.dateTime('created_at', { useTz: true })
+      table.dateTime('updated_at', { useTz: true })
     })
   }
 
