@@ -7,10 +7,8 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary(),
       table.dateTime('data'),
-      table.integer('armaID').unsigned(),
-      table.integer('armaID').references('armas').inTable('id'),
-      table.integer('efectivoID').unsigned(),
-      table.integer('efectivoID').references('efectivos').inTable('id')
+      table.integer('armaID').unsigned().references('id').inTable('armas').onDelete('CASCADE'), 
+      table.integer('efectivoID').unsigned().references('id').inTable('efectivos').onDelete('CASCADE')
 
       /**
        * Uses dateTimetz for PostgreSQL and DATETIME2 for MSSQL
@@ -21,10 +19,8 @@ export default class extends BaseSchema {
   }
 
   public async down () {
-    this.schema.table(this.tableName, (table)=>{
-      table.dropinteger('armaID'),
-      table.dropColumn('armaID'),
-      table.dropinteger('efectivoID'),
+    this.schema.table(this.tableName, (table)=>{ 
+      table.dropColumn('armaID'), 
       table.dropColumn('efectivoID')
     })
     this.schema.dropTable(this.tableName)
