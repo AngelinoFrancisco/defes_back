@@ -10,7 +10,7 @@ export default class extends BaseSchema {
       table.string('email'),
       table.string('senha'),
       table.string('tipo'),
-      table.boolean('isAdmin'),
+      table.boolean('is_admin'),
       /**
        * Uses dateTimetz for PostgreSQL and DATETIME2 for MSSQL
        */

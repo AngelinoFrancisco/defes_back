@@ -30,7 +30,7 @@ export default class Arma extends BaseModel {
   public is_singular:boolean
   
   @column()
-  public is_empSeg:boolean
+  public is_empresa_seg:boolean
  
   
   @column()
@@ -38,13 +38,8 @@ export default class Arma extends BaseModel {
 
   
   @column()
-  public is_Com_Mun:boolean
-  
-  @column()
-  public usuario_id:number
-
-  
-
+  public is_comando_mun:boolean
+   
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

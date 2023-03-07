@@ -10,17 +10,14 @@ export default class extends BaseSchema {
       table.string('nip'),
       table.string('patente'),
       table.string('genero'), 
-      table.integer('usuarioID').unsigned().references('id').inTable('usuarios').onDelete('CASCADE')
+      table.integer('usuario_id').unsigned().references('id').inTable('usuarios').onDelete('CASCADE')
       table.dateTime('created_at', { useTz: true })
       table.dateTime('updated_at', { useTz: true })
     })
   }
 
   public async down () {
-
-    this.schema.table(this.tableName, (table)=>{ 
-      table.dropColumn('usuarioID')
-    })
+ 
     this.schema.dropTable(this.tableName)
   }
 }

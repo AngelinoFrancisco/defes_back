@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.string('nome'),
       table.string('nif'),
       table.string('localizacao'), 
-      table.integer('usuarioID').unsigned().references('id').inTable('usuarios').onDelete('CASCADE')
+      table.integer('usuario_id').unsigned().references('id').inTable('usuarios').onDelete('CASCADE')
 
       /**
        * Uses dateTimetz for PostgreSQL and DATETIME2 for MSSQL
@@ -19,10 +19,7 @@ export default class extends BaseSchema {
     })
   }
 
-  public async down () {
-    this.schema.table(this.tableName, (table)=>{ 
-      table.dropColumn('usuarioID')
-    })
+  public async down () { 
     this.schema.dropTable(this.tableName)
   }
 }
