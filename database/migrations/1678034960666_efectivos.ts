@@ -5,13 +5,12 @@ export default class extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id'),
+      table.increments('id').primary(),
       table.string('nome'),
       table.string('nip'),
       table.string('patente'),
-      table.string('genero'),
-      table.integer('usuarioID').unsigned(),
-      table.foreign('usuarioID').references('usuarios').inTable('id')
+      table.string('genero'), 
+      table.integer('usuarioID').unsigned().references('id').inTable('usuarios').onDelete('CASCADE')
       table.dateTime('created_at', { useTz: true })
       table.dateTime('updated_at', { useTz: true })
     })
@@ -19,8 +18,7 @@ export default class extends BaseSchema {
 
   public async down () {
 
-    this.schema.table(this.tableName, (table)=>{
-      table.dropForeign('usuarioID'),
+    this.schema.table(this.tableName, (table)=>{ 
       table.dropColumn('usuarioID')
     })
     this.schema.dropTable(this.tableName)

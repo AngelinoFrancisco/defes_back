@@ -17,8 +17,7 @@ export default class extends BaseSchema {
       table.boolean('isEmpSeg'),
       table.boolean('isEntExterna'),
       table.boolean('isComMun'), 
-      table.integer('usuarioID')
-      table.foreign('usuarioID').references('id').inTable('usuarios')
+      table.integer('usuarioID').unsigned().references('id').inTable('usuarios').onDelete('CASCADE')
 
       /**
        * Uses dateTimetz for PostgreSQL and DATETIME2 for MSSQL
@@ -29,8 +28,7 @@ export default class extends BaseSchema {
   }
 
   public async down () {
-    this.schema.table(this.tableName,(table)=>{
-      table.dropForeign('usuarioID'),
+    this.schema.table(this.tableName,(table)=>{ 
       table.dropColumn('usuarioID')
     })
     this.schema.dropTable(this.tableName)

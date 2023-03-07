@@ -6,12 +6,12 @@ export default class extends BaseSchema {
  
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id'),
+      table.increments('id').primary(),
       table.dateTime('data'),
       table.integer('armaID').unsigned(),
-      table.foreign('armaID').references('armas').inTable('id'),
+      table.integer('armaID').references('armas').inTable('id'),
       table.integer('empSegID').unsigned(),
-      table.foreign('empSegID').references('empresa_segs').inTable('id')
+      table.integer('empSegID').references('empresa_segs').inTable('id')
 
       /**
        * Uses dateTimetz for PostgreSQL and DATETIME2 for MSSQL
@@ -23,9 +23,9 @@ export default class extends BaseSchema {
 
   public async down () {
     this.schema.table(this.tableName, (table)=>{
-      table.dropForeign('armaID'),
+      table.dropinteger('armaID'),
       table.dropColumn('armaID'),
-      table.dropForeign('empSegID'),
+      table.dropinteger('empSegID'),
       table.dropColumn('empSegID')
     })
     this.schema.dropTable(this.tableName)
