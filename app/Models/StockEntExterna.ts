@@ -9,10 +9,10 @@ export default class StockEntExterna extends BaseModel {
   public data:DateTime
 
   @column()
-  public armaID:number
+  public arma_id:number
   
   @column()
-  public entExternaID:number
+  public ent_externa_id:number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
