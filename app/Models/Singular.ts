@@ -12,7 +12,7 @@ export default class Singular extends BaseModel {
   public bi:string
 
   @column()
-  public telefone:number
+  public telefone:string
 
   @column()
   public genero:string
