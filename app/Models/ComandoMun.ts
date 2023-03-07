@@ -12,7 +12,7 @@ export default class ComandoMun extends BaseModel {
   public municipio:string
  
   @column()
-  public usuarioID:number
+  public usuario_id:number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

@@ -18,7 +18,7 @@ export default class Efectivo extends BaseModel {
   public genero:string
 
   @column()
-  public usuarioID:number
+  public usuario_id:number
 
 
   @column.dateTime({ autoCreate: true })

@@ -18,7 +18,7 @@ export default class Singular extends BaseModel {
   public genero:string
 
   @column()
-  public usuarioID:number
+  public usuario_id:number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

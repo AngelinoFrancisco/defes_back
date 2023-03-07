@@ -9,10 +9,10 @@ export default class StockUsuario extends BaseModel {
   public data:DateTime
 
   @column()
-  public armaID:number
+  public arma_id:number
   
   @column()
-  public usuarioID:number
+  public usuario_id:number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

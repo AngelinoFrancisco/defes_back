@@ -9,10 +9,10 @@ export default class StockComandoMun extends BaseModel {
   public data:DateTime
 
   @column()
-  public armaID:number
+  public arma_id:number
   
   @column()
-  public comMunID:number
+  public com_mun_id:number
  
 
   @column.dateTime({ autoCreate: true })

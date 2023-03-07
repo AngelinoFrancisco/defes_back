@@ -18,7 +18,7 @@ export default class Usuario extends BaseModel {
   public tipo:string
 
   @column()
-  public isAdmin:boolean
+  public is_admin:boolean
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

@@ -12,7 +12,6 @@ export default class ArmasController {
         }).catch(e=>{
             console.log(e)
         }) 
-
         response.status(200).send({msg:body})
     }
 

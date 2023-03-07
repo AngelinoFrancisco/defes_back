@@ -9,10 +9,10 @@ export default class StockSingular extends BaseModel {
   public data:DateTime
 
   @column()
-  public armaID:number
+  public arma_id:number
   
   @column()
-  public singularID:number
+  public singular_id:number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

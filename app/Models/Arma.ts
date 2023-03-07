@@ -21,27 +21,27 @@ export default class Arma extends BaseModel {
   public tipo:string
 
   @column()
-  public isUsuario:boolean
+  public is_usuario:boolean
 
   @column()
-  public isEfectivo:boolean
+  public is_efectivo:boolean
   
   @column()
-  public isSingular:boolean
+  public is_singular:boolean
   
   @column()
-  public isEmpSeg:boolean
+  public is_empSeg:boolean
  
   
   @column()
-  public isEntExterna:boolean
+  public is_ent_externa:boolean
 
   
   @column()
-  public isComMun:boolean
+  public is_Com_Mun:boolean
   
   @column()
-  public usuarioID:number
+  public usuario_id:number
 
   
 

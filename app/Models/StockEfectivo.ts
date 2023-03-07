@@ -9,10 +9,10 @@ export default class StockEfectivo extends BaseModel {
   public data:DateTime
 
   @column()
-  public armaID:number
+  public arma_id:number
   
   @column()
-  public efectivoID:number
+  public efectivo_id:number
  
 
 
