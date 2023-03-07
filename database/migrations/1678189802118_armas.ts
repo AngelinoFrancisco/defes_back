@@ -11,13 +11,12 @@ export default class extends BaseSchema {
       table.string('marca'), 
       table.string('modelo'),
       table.string('tipo'),
-      table.boolean('isUsuario'),
-      table.boolean('isEfecivo'),
-      table.boolean('isSingular'),
-      table.boolean('isEmpSeg'),
-      table.boolean('isEntExterna'),
-      table.boolean('isComMun'), 
-      table.integer('usuarioID').unsigned().references('id').inTable('usuarios').onDelete('CASCADE')
+      table.boolean('is_usuario'),
+      table.boolean('is_efectivo'),
+      table.boolean('is_singular'),
+      table.boolean('is_empresa_seg'),
+      table.boolean('is_ent_externa'),
+      table.boolean('is_comando_mun'),  
 
       /**
        * Uses dateTimetz for PostgreSQL and DATETIME2 for MSSQL
@@ -27,10 +26,7 @@ export default class extends BaseSchema {
     })
   }
 
-  public async down () {
-    this.schema.table(this.tableName,(table)=>{ 
-      table.dropColumn('usuarioID')
-    })
+  public async down () { 
     this.schema.dropTable(this.tableName)
   }
 }
