@@ -26,6 +26,9 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-Route.resource('/armas', '')
+Route.resource('/armas', 'ArmsController').apiOnly() 
+Route.resource('/efectivos', 'EfectivosController').apiOnly() 
+
+
 
 }).prefix('/api')
