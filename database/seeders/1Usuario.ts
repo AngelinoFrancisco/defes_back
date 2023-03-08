@@ -7,38 +7,43 @@ export default class extends BaseSeeder {
     
     await Usuario.createMany([
       {
+        "id":1,
         "nome": "Gustavo",
         "senha": "f1hj73k8",
         "email": "gustavo@example.com",
-        "tipo": "gerente",
+        "tipo": "logistica",
         "is_admin": true
         },
         {
+          "id":2,
           "nome": "Juliana",
           "senha": "dn8f6ka7",
           "email": "juliana@example.com",
-          "tipo": "cliente",
-          "is_admin": false
+          "tipo": "dispo",
+          "is_admin": true
           },
           {
+            "id":3,
             "nome": "Rodrigo",
             "senha": "g8j1d9f5",
             "email": "rodrigo@example.com",
-            "tipo": "administrador",
+            "tipo": "orgao",
             "is_admin": false
             },
             {
+              "id":4,
               "nome": "Camila",
               "senha": "e5fj2d6a",
               "email": "camila@example.com",
-              "tipo": "cliente",
+              "tipo": "comando_provincial",
               "is_admin": false
               },
               {
+                "id":5,
                 "nome": "Luciana",
                 "senha": "c4j9f8k2",
                 "email": "luciana@example.com",
-                "tipo": "gerente",
+                "tipo": "dinique",
                 "is_admin": false
                 }
     ])

@@ -19,12 +19,11 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+Route.group(() => {
 
-Route.group(()=>{
-    
-Route.resource('usuarios','UsuariosController').apiOnly()
-Route.resource('armas', 'ArmasController').apiOnly() 
-Route.resource('efectivos', 'EfectivosController').apiOnly() 
+    Route.resource('usuarios', 'UsuariosController').apiOnly()
+    Route.resource('armas', 'ArmasController').apiOnly()
+    Route.resource('efectivos', 'EfectivosController').apiOnly()
 
 }).prefix('/api')
 

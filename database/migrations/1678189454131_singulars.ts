@@ -8,6 +8,7 @@ export default class extends BaseSchema {
       table.increments('id').primary(),
       table.string('nome'), 
       table.string('telefone'),
+      table.string('bi'),   
       table.string('genero'),   
       table.integer('usuario_id').unsigned().references('id').inTable('usuarios').onDelete('CASCADE')
       /**

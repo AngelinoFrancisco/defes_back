@@ -25,7 +25,19 @@ export default class ArmasController {
     public async update({request,response,params}:HttpContextContract){ 
         const Armas = await Arma.find(params.id)
         if(Armas){
-            Armas.merge(request.only(['nome','quantidade','unidade']))
+            Armas.merge(request.only([
+                'livrete',
+                'serie',
+                'marca',
+                'modelo',
+                'tipo',
+                'is_usuario',
+                'is_efectivo',
+                'is_singular',
+                'is_empresa_seg',
+                'is_ent_externa',
+                'is_comando_mun'
+            ]))
             Armas.save()
             console.log("usuario atualizado!")
             response.status(200).send(Armas)

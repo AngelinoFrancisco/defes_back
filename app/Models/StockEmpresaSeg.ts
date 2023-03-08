@@ -6,13 +6,10 @@ export default class StockEmpresaSeg extends BaseModel {
   public id: number
 
   @column()
-  public data:DateTime
-
-  @column()
   public arma_id:number
   
   @column()
-  public emp_seg_id:number
+  public empresa_seg_id:number
   
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
