@@ -57,15 +57,22 @@ export default class UsersController {
         }
             
     }
-    public async logout({request, response, auth}:HttpContextContract){
-        
-        
-        await auth.use('api').logout().then(()=>{
+    public async logout({response, auth}:HttpContextContract){
+        try{
+            await auth.use('api').authenticate()
+            await auth.use('api').revoke().then(()=>{
+                console.log("entrou na api")
+                response.status(200).json(true)
+            }).catch((erros)=>{
+                response.status(404).json(erros)
+            })
+        }catch(evt){
 
-            response.status(200).json(true)
-        }).catch((erros)=>{
-            response.status(404).json(erros)
-        })
+            response.status(404).json('invalid token')
+        }
+
+        
+   
     }
 
     public async postUsers({request, response}:HttpContextContract){
