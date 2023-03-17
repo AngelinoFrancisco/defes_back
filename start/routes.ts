@@ -20,13 +20,8 @@
 
 import { Response } from '@adonisjs/core/build/standalone'
 import Route from '@ioc:Adonis/Core/Route'
-Route.group(() => {
-    Route.get('dashboard', async ({ auth }) => {
-        await auth.use('api').authenticate()
-        
-        return `Bem vindo, ${auth.user?.nome} !`
-      })
-
+Route.group(() => { 
+    Route.post('user', 'UsersController.getOne')
     Route.post('logout', 'UsersController.logout')
     Route.get('users', 'UsersController.getUsers')
     Route.post('login','UsersController.login')
