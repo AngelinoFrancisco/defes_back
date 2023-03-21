@@ -1,4 +1,4 @@
-import { DateTime } from 'luxon'
+import { DateTime, SecondNumbers } from 'luxon'
 import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
 import Atividade from './Atividade'
@@ -9,6 +9,9 @@ export default class Relatorio extends BaseModel {
 
   @column()
   public nome:string
+ 
+  @column()
+  public uuid:string
 
   @column()
   public user_id:number

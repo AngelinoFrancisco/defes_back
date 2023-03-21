@@ -16,13 +16,11 @@ export default class RelatoriosController {
 
         const getAtivity = await Atividade.findBy('acronimo', test)
 
-        if(getAtivity){
-            console.log(getAtivity)
-
+        if(getAtivity){ 
             const newDuty = {
                 nome:request.input('nome'),
                 user_id:request.input('user_id'),
-                created_at:request.input('created_at'),
+                uuid:request.input('uuid'),
                 atividade_id:getAtivity.id
     
             }
