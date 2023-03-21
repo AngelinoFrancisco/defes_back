@@ -7,14 +7,74 @@ import { DateTime } from 'luxon'
 
 
 export default class UsersController {
-
-    public async getOne({ request, response, auth }: HttpContextContract) {
     
-        const {user_id} =  request.all()
+    public async getOnline({ response, auth }: HttpContextContract) {
+
+        
+        const isAuthenticated = await auth.use('api').check()  
+ 
+        if (isAuthenticated) {
+
+            const users = await User.query().where('is_online', true)
+            const freqs = await Frequencia.all()
+            const onlines = new Array()
+
+            users.forEach(user=>{
+                freqs.forEach(online=>{
+                    if(user.id == online.user_id){
+                        onlines.push(online)
+                    }
+                })
+            })
 
 
-        await auth.use('api').check()
-        const isAuthenticated = auth.use('api').isLoggedIn
+            response.status(200).send(onlines)
+        } else {
+            return ' não autenticado'
+        }
+
+
+
+    }
+    
+    public async getOffline({ response, auth }: HttpContextContract) {
+
+        
+        const isAuthenticated = await auth.use('api').check()  
+ 
+        if (isAuthenticated) {
+
+            const users = await User.query().where('is_online', false)
+            const freqs = await Frequencia.all()
+            const offlines = new Array()
+
+            users.forEach(user =>{ 
+
+                freqs.forEach(off=>{
+                    if(user.id == off.user_id){
+
+                        offlines.push(off)
+
+                    }
+                })
+                
+            })
+            
+            response.status(200).send(offlines)
+        } else {
+            return ' não autenticado'
+        }
+
+
+
+    }
+
+    public async getOne({ request, response, auth , params}: HttpContextContract) {
+    
+        const user_id =  params.id
+
+ 
+        const isAuthenticated = await auth.use('api').check()
 
         // console.log(`checked: ${checked} isAuthenticated: ${isAuthenticated}`)
         if (isAuthenticated) {
@@ -25,14 +85,12 @@ export default class UsersController {
             return ' não autenticado'
         }
 
-
-
     }
 
     public async getUsers({ response, auth }: HttpContextContract) {
 
-        await auth.use('api').check()
-        const isAuthenticated = auth.use('api').isLoggedIn
+        
+        const isAuthenticated = await auth.use('api').check()  
 
         // console.log(`checked: ${checked} isAuthenticated: ${isAuthenticated}`)
         if (isAuthenticated) {
@@ -70,6 +128,8 @@ export default class UsersController {
                 created_at: DateTime.now(),
                 updated_at: DateTime.now()
             }
+            user.is_online = true
+            user.save()
             await Frequencia.updateOrCreate({ user_id: user.id }, newFreq)
             const token = await auth.use('api').attempt(email, password)
             response.status(200).ok({ token, user })
@@ -81,22 +141,22 @@ export default class UsersController {
     }
 
 
-    public async logout({ request, response, auth }: HttpContextContract) {
+    public async logout({ request, response, auth, params }: HttpContextContract) {
 
 
-        const { user_id } = request.all()
-        console.log("user_id", user_id)
+        const user_id = params.id  
 
-        // const checked =  await auth.use('api').check() 
- 
-
-        const isAuthenticated = auth.use('api').isLoggedIn
+        const isAuthenticated = await auth.use('api').check() 
         if (isAuthenticated) {
             const newFreq = {
                 user_id: user_id,
                 created_at: DateTime.now(),
                 updated_at: DateTime.now()
             }
+            
+            const user = await User.findBy('id', user_id)
+            user!.is_online = false
+            user!.save()
             await Frequencia.updateOrCreate({ user_id: user_id }, newFreq)
             await auth.use('api').revoke().then(() => {
                 response.status(200).json(true)
@@ -106,10 +166,6 @@ export default class UsersController {
         } else {
             response.status(404).json('invalid token')
         }
-
-
-
-
 
 
     }

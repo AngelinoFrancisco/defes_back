@@ -36,7 +36,7 @@ export default class extends BaseSeeder {
             {
               "id":4,
               "nome": "Camila",
-              "password": "123d",
+              "password": "1234",
               "email": "camila@example.com",
               "bipassrecover": "232222112lf44",
               "is_admin": false,

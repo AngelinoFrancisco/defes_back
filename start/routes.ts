@@ -21,8 +21,14 @@
 import { Response } from '@adonisjs/core/build/standalone'
 import Route from '@ioc:Adonis/Core/Route'
 Route.group(() => { 
-    Route.post('user', 'UsersController.getOne')
-    Route.post('logout', 'UsersController.logout')
+
+    Route.post('relatorio', 'RelatoriosController.create')
+    Route.get('offline', 'UsersController.getOffline')
+    Route.get('online', 'UsersController.getOnline')
+    Route.get('counts/:acronimo?', 'AtividadesController.countDuty' )
+    Route.get('atividades', 'AtividadesController.getAll' )
+    Route.get('one/:id?', 'UsersController.getOne')
+    Route.get('logout/:id?', 'UsersController.logout')
     Route.get('users', 'UsersController.getUsers')
     Route.post('login','UsersController.login')
     Route.post('registro','UsersController.postUsers' )

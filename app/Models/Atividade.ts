@@ -10,6 +10,9 @@ export default class Atividade extends BaseModel {
   
   @column()
   public acronimo:string
+  
+  @column()
+  public quant:number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

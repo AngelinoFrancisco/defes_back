@@ -8,6 +8,7 @@ export default class extends BaseSchema {
       table.increments('id')
       table.string('nome')
       table.string('acronimo')
+      table.integer('quant').defaultTo(0)
 
       /**
        * Uses dateTimetz for PostgreSQL and DATETIME2 for MSSQL
