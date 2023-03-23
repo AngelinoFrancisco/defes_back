@@ -20,15 +20,19 @@
 
 import { Response } from '@adonisjs/core/build/standalone'
 import Route from '@ioc:Adonis/Core/Route'
-Route.group(() => { 
-
+Route.group(() => {
+    Route.get('relatorio/:user_id', 'RelatoriosController.getMine')
+    Route.delete('excluir_relatorio/:uuid', 'RelatoriosController.deleteOne')
     Route.get('relatorios', 'RelatoriosController.getAll')
     Route.post('relatorio', 'RelatoriosController.create')
     Route.get('offline', 'UsersController.getOffline')
     Route.get('online', 'UsersController.getOnline')
     Route.get('counts/:acronimo?', 'AtividadesController.countDuty' )
     Route.get('atividades', 'AtividadesController.getAll' )
-    Route.get('one/:id?', 'UsersController.getOne')
+
+    Route.get('user/:tipo/:search', 'UsersController.oneUser')
+    Route.put('update_user/:id', 'UsersController.updateOne')
+    Route.delete('one/:id', 'UsersController.deleteOne')
     Route.get('logout/:id?', 'UsersController.logout')
     Route.get('users', 'UsersController.getUsers')
     Route.post('login','UsersController.login')

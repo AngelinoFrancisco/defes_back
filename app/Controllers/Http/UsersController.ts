@@ -69,9 +69,28 @@ export default class UsersController {
 
     }
 
-    public async getOne({ request, response, auth , params}: HttpContextContract) {
+    public async updateOne({response, auth,params, request}:HttpContextContract){
+        const id =  params.id 
+        const isAuthenticated = await auth.use('api').check()
+ 
+        if (isAuthenticated) {
+
+            const user = await User.find(id)    
+            if(!user){
+                return response.status(200).send(false)
+            }
+            user.merge(request.only(['nome', 'email', 'bipassrecover']))
+            user.save()
+            return response.status(200).send(true)
+        } else {
+            return response.status(404).send(false)
+        }
+        
+    }
+
+    public async deleteOne({ request, response, auth , params}: HttpContextContract) {
     
-        const user_id =  params.id
+        const id =  params.id
 
  
         const isAuthenticated = await auth.use('api').check()
@@ -79,10 +98,16 @@ export default class UsersController {
         // console.log(`checked: ${checked} isAuthenticated: ${isAuthenticated}`)
         if (isAuthenticated) {
 
-            const user = await User.findBy('id', user_id)
-            response.status(200).send(user)
+            const user = await User.find(id)    
+            if(!user){
+                return response.status(200).send(false)
+            }
+
+            
+            user?.delete()
+            response.status(200).send(true)
         } else {
-            return ' não autenticado'
+            return response.status(404).send(false)
         }
 
     }
