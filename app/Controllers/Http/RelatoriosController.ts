@@ -4,6 +4,39 @@ import Relatorio from 'App/Models/Relatorio'
 
 export default class RelatoriosController {
 
+    public async duty({params,response, auth}:HttpContextContract){
+        const tipo = params.tipo
+        const search = params.search
+        
+        const isAuthenticated = await auth.use('api').check()
+
+        if(isAuthenticated){
+            if(tipo =="nome"){
+                
+            const duty = await Relatorio.findBy(`${tipo}`, `${search}`)
+            if(!duty){
+                return response.status(200).send(false)
+            }
+            console.log("apenas 1")
+            return response.status(200).send(duty)
+
+            } 
+            const ativity = await Atividade.findBy(tipo, search) 
+            if(!ativity ){ 
+                return response.status(200).send(false)
+            }
+
+            const Duties = await Relatorio.query().where("atividade_id", ativity!.id)
+            if(!Duties){
+                return response.status(200).send(false)
+            } 
+            return response.status(200).send(Duties)
+            
+
+        }else{
+            return response.status(404).send(false)
+        }
+    }
     public async getMine({ params, response, auth}:HttpContextContract){
         const user_id = params.user_id
         const isAuthenticated = await auth.use('api').check()

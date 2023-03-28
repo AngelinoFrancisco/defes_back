@@ -7,21 +7,53 @@ import { DateTime } from 'luxon'
 
 
 export default class UsersController {
-    
+
+    public async reset({response, request}:HttpContextContract){
+        const {email,bipassrecover} =  request.all()
+
+        const user = await User.findBy('email',email )
+
+        if(user?.bipassrecover != bipassrecover){
+          return  response.status(404).send(false)
+        }else{
+            return response.status(200).send(user)
+
+        }
+    }
+
+
+
+    public async resetupdate({response, request, params}:HttpContextContract){
+         
+ 
+        const users = await User.find(params.id)
+        if(users){ 
+            users.merge(request.only(['nome', 'password', 'bipassrecover','email']))
+            users.save()
+            console.log("usuario atualizado!")
+            response.status(200).send(users)
+
+        }else{
+            response.status(404).send(false)
+        }       
+
+       
+
+    }
     public async getOnline({ response, auth }: HttpContextContract) {
 
-        
-        const isAuthenticated = await auth.use('api').check()  
- 
+
+        const isAuthenticated = await auth.use('api').check()
+
         if (isAuthenticated) {
 
             const users = await User.query().where('is_online', true)
             const freqs = await Frequencia.all()
             const onlines = new Array()
 
-            users.forEach(user=>{
-                freqs.forEach(online=>{
-                    if(user.id == online.user_id){
+            users.forEach(user => {
+                freqs.forEach(online => {
+                    if (user.id == online.user_id) {
                         onlines.push(online)
                     }
                 })
@@ -36,30 +68,30 @@ export default class UsersController {
 
 
     }
-    
+
     public async getOffline({ response, auth }: HttpContextContract) {
 
-        
-        const isAuthenticated = await auth.use('api').check()  
- 
+
+        const isAuthenticated = await auth.use('api').check()
+
         if (isAuthenticated) {
 
             const users = await User.query().where('is_online', false)
             const freqs = await Frequencia.all()
             const offlines = new Array()
 
-            users.forEach(user =>{ 
+            users.forEach(user => {
 
-                freqs.forEach(off=>{
-                    if(user.id == off.user_id){
+                freqs.forEach(off => {
+                    if (user.id == off.user_id) {
 
                         offlines.push(off)
 
                     }
                 })
-                
+
             })
-            
+
             response.status(200).send(offlines)
         } else {
             return ' não autenticado'
@@ -69,41 +101,41 @@ export default class UsersController {
 
     }
 
-    public async updateOne({response, auth,params, request}:HttpContextContract){
-        const id =  params.id 
+    public async updateOne({ response, auth, params, request }: HttpContextContract) {
+        const id = params.id
         const isAuthenticated = await auth.use('api').check()
- 
+
         if (isAuthenticated) {
 
-            const user = await User.find(id)    
-            if(!user){
+            const user = await User.find(id)
+            if (!user) {
                 return response.status(200).send(false)
             }
-            user.merge(request.only(['nome', 'email', 'bipassrecover']))
+            user.merge(request.only(['nome', 'email', 'bipassrecover', 'password']))
             user.save()
             return response.status(200).send(true)
         } else {
             return response.status(404).send(false)
         }
-        
+
     }
 
-    public async deleteOne({ request, response, auth , params}: HttpContextContract) {
-    
-        const id =  params.id
+    public async deleteOne({ request, response, auth, params }: HttpContextContract) {
 
- 
+        const id = params.id
+
+
         const isAuthenticated = await auth.use('api').check()
 
         // console.log(`checked: ${checked} isAuthenticated: ${isAuthenticated}`)
         if (isAuthenticated) {
 
-            const user = await User.find(id)    
-            if(!user){
+            const user = await User.find(id)
+            if (!user) {
                 return response.status(200).send(false)
             }
 
-            
+
             user?.delete()
             response.status(200).send(true)
         } else {
@@ -112,10 +144,30 @@ export default class UsersController {
 
     }
 
+    public async oneUser({ auth, response, params }: HttpContextContract) {
+        const tipo = params.tipo
+        const search = params.search
+
+        console.log('', tipo)
+        console.log('search', search)
+
+        const isAuthenticated = await auth.use('api').check()
+
+        if (isAuthenticated) {
+            const user = await User.findBy(`${tipo}`, `${search}`)
+
+            return response.status(200).send(user)
+
+        } else {
+            return response.status(404).send(false)
+        }
+
+    }
+
     public async getUsers({ response, auth }: HttpContextContract) {
 
-        
-        const isAuthenticated = await auth.use('api').check()  
+
+        const isAuthenticated = await auth.use('api').check()
 
         // console.log(`checked: ${checked} isAuthenticated: ${isAuthenticated}`)
         if (isAuthenticated) {
@@ -165,20 +217,19 @@ export default class UsersController {
 
     }
 
-
     public async logout({ request, response, auth, params }: HttpContextContract) {
 
 
-        const user_id = params.id  
+        const user_id = params.id
 
-        const isAuthenticated = await auth.use('api').check() 
+        const isAuthenticated = await auth.use('api').check()
         if (isAuthenticated) {
             const newFreq = {
                 user_id: user_id,
                 created_at: DateTime.now(),
                 updated_at: DateTime.now()
             }
-            
+
             const user = await User.findBy('id', user_id)
             user!.is_online = false
             user!.save()

@@ -1,11 +1,11 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
-import Contacto from 'App/Models/Contacto'
+import reclamacao from 'App/Models/reclamacao'
 
 export default class extends BaseSeeder {
   public async run () {
     // Write your database queries inside the run method
 
-    await Contacto.createMany([{
+    await reclamacao.createMany([{
       "id": 1,
       "categoria": "outro", 
       "conteudo": "Rua do Comércio Rua do Comércio Rua do Comércio ",

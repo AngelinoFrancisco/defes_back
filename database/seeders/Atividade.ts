@@ -10,25 +10,25 @@ export default class extends BaseSeeder {
         "id": 1, 
         "nome": "XSS SCRIPTING", 
         "acronimo": "xss",
-        "quant":0
+        "quant":25
       },
       {
         "id": 2, 
         "nome": "Sub-Domains Finder", 
         "acronimo": "domains",
-        "quant":0
+        "quant":5
       },
       {
         "id": 3, 
         "nome": "SQL INJECTION", 
         "acronimo":"sql",
-        "quant":0
+        "quant":30
       },
       {
         "id": 4, 
         "nome": "PORT SCANNER", 
         "acronimo":"scanner",
-        "quant":0
+        "quant":80
       }
     ])
   }
