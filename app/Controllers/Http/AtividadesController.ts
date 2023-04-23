@@ -25,7 +25,7 @@ export default class AtividadesController {
         const isAuthenticated =  await auth.use('api').check()
         
         const acronimo = params.acronimo
-
+        console.log("acronimo", acronimo)
 
         if(isAuthenticated){
 
@@ -36,7 +36,7 @@ export default class AtividadesController {
 
            return  response.status(200).send(duty)
         }else{
-            return ' não autenticado'
+            return response.status(500).send(false)
 
         }
 

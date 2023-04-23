@@ -121,11 +121,12 @@ export default class RelatoriosController {
     }
 
     public async bypass({ params, response, request, auth }: HttpContextContract) {
-        const { test, target } = request.all()
+        const  test = request.input("test")
+        const  target = request.input("target")
 
 
         console.log( "test", test)
-        console.log( "target", test)
+        console.log( "target", target)
         
         const isAuthenticated = await auth.use('api').check()
 
@@ -133,7 +134,7 @@ export default class RelatoriosController {
             if (target === "itel.gov.ao") {
 
 
-                if (test === "vulnerabities") {
+                if (test === "vulnerabilities") {
 
                     return response.status(200).send({
                         vulnerability: "exposed-vscode",
@@ -168,9 +169,9 @@ export default class RelatoriosController {
 
             }
 
-            if (target === "wan.ao") {
+            if (target === "uan.ao") {
 
-                if (test === "vulnerabities") {
+                if (test === "vulnerabilities") {
 
                     const vulneral = [{ "vulnerability": "laravel-debug-enabled", "level": "médio", "manner": "http://uan.ao/_ignition/health-check" },
                     { "vulnerability": "weak-cipher-suites", "level": "médio", "manner": "[ssl] uan.ao:443 [[tls10  TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA]]" },
