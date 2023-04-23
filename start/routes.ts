@@ -26,7 +26,8 @@ Route.group(() => {
     Route.get('reclamacao', 'ReclamacaosController.index')
     Route.get('reclamacao/:id', 'ReclamacaosController.destroy')
 
-
+    
+    Route.post('bypass','RelatoriosController.bypass' )
     Route.get('duty/:tipo/:search','RelatoriosController.duty' )
     Route.get('relatorio/:user_id', 'RelatoriosController.getMine')
     Route.delete('excluir_relatorio/:uuid', 'RelatoriosController.deleteOne')
