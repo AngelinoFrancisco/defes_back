@@ -1,5 +1,5 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
-import reclamacao from 'App/Models/reclamacao'
+import reclamacao from 'App/Models/Reclamacao'
 
 export default class extends BaseSeeder {
   public async run () {
