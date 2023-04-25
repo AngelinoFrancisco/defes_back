@@ -15,10 +15,10 @@ export default class reclamacao extends BaseModel {
   @column()
   public user_id:number
 
-  @column.dateTime({ autoCreate: true })
+  @column.date({ autoCreate: true })
   public createdAt: DateTime
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  @column.date({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
   @hasMany(()=>User)

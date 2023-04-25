@@ -12,10 +12,10 @@ export default class extends BaseSchema {
       table.string('token', 64).notNullable().unique()
 
       /**
-       * Uses timestampz for PostgreSQL and DATETIME2 for MSSQL
+       * Uses timestampz for PostgreSQL and date2 for MSSQL
        */
-      table.dateTime('expires_at', { useTz: true }).nullable()
-      table.dateTime('created_at', { useTz: true }).notNullable()
+      table.date('expires_at', ).nullable()
+      table.date('created_at', ).notNullable()
     })
   }
 

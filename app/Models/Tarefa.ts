@@ -18,9 +18,9 @@ export default class Tarefa extends BaseModel {
 
   @hasMany(()=>Atividade)
   public atividades:HasMany<typeof Atividade>
-  @column.dateTime({ autoCreate: true })
+  @column.date({ autoCreate: true })
   public createdAt: DateTime
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  @column.date({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 }

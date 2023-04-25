@@ -26,10 +26,10 @@ export default class User extends BaseModel {
   @column()
   public is_online:boolean
 
-  @column.dateTime({ autoCreate: true })
+  @column.date({ autoCreate: true })
   public createdAt: DateTime
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  @column.date({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
   @beforeSave()

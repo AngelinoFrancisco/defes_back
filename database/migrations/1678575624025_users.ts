@@ -14,10 +14,10 @@ export default class extends BaseSchema {
       table.boolean('is_online').defaultTo(false)
 
       /**
-       * Uses dateTimetz for PostgreSQL and DATETIME2 for MSSQL
+       * Uses datetz for PostgreSQL and date2 for MSSQL
        */
-      table.dateTime('created_at', { useTz: true })
-      table.dateTime('updated_at', { useTz: true })
+      table.date('created_at', )
+      table.date('updated_at',)
     })
   }
 
