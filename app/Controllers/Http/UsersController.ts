@@ -2,7 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import Hash from '@ioc:Adonis/Core/Hash'
 import Frequencia from 'App/Models/Frequencia'
-import { date } from 'luxon'
+import { DateTime } from 'luxon'
 
 
 
@@ -202,8 +202,8 @@ export default class UsersController {
         try {
             const newFreq = {
                 user_id: user.id,
-                created_at: date.now(),
-                updated_at: date.now()
+                created_at: DateTime.now(),
+                updated_at: DateTime.now()
             }
             user.is_online = true
             user.save()
@@ -226,8 +226,8 @@ export default class UsersController {
         if (isAuthenticated) {
             const newFreq = {
                 user_id: user_id,
-                created_at: date.now(),
-                updated_at: date.now()
+                created_at: DateTime.now(),
+                updated_at: DateTime.now()
             }
 
             const user = await User.findBy('id', user_id)

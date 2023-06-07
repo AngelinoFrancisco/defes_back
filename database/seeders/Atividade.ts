@@ -29,6 +29,12 @@ export default class extends BaseSeeder {
         "nome": "Technologias", 
         "acronimo":"technologies",
         "quant":80
+      },
+      {
+        "id": 5, 
+        "nome": "Clickjancking", 
+        "acronimo":"clickjacking",
+        "quant":15
       }
     ])
   }
