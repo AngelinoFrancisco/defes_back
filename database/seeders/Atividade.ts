@@ -28,7 +28,7 @@ export default class extends BaseSeeder {
         "id": 4, 
         "nome": "Technologias", 
         "acronimo":"technologies",
-        "quant":80
+        "quant":50
       },
       {
         "id": 5, 

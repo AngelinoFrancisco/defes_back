@@ -18,7 +18,7 @@ export default class extends BaseSeeder {
         {
           "id":2,
           "nome": "Juliana",
-          "password": "123b",
+          "password": "user1",
           "email": "juliana@example.com",
           "bipassrecover": "74835229fh9484",
           "is_admin": false,
@@ -27,7 +27,7 @@ export default class extends BaseSeeder {
           {
             "id":3,
             "nome": "Rodrigo",
-            "password": "123c",
+            "password": "user2",
             "email": "rodrigo@example.com",
             "bipassrecover": "364887203fh478",
             "is_admin": false,
@@ -36,7 +36,7 @@ export default class extends BaseSeeder {
             {
               "id":4,
               "nome": "Camila",
-              "password": "1234",
+              "password": "user3",
               "email": "camila@example.com",
               "bipassrecover": "232222112lf44",
               "is_admin": false,
