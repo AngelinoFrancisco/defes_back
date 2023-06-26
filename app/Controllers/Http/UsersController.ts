@@ -111,7 +111,10 @@ export default class UsersController {
             if (!user) {
                 return response.status(200).send(false)
             }
-            user.merge(request.only(['nome', 'email', 'bipassrecover', 'password']))
+            //const result =  await User.updateOrCreate('id':id, request.only(['nome', 'email', 'bipassrecover', 'password', 'is_admin']) )
+          
+            //console.log(result)
+             user.merge(request.only(['nome', 'email', 'bipassrecover', 'password', 'is_admin']))
             user.save()
             return response.status(200).send(true)
         } else {
@@ -148,8 +151,8 @@ export default class UsersController {
         const tipo = params.tipo
         const search = params.search
 
-        console.log('', tipo)
-        console.log('search', search)
+       // console.log('', tipo)
+        //console.log('search', search)
 
         const isAuthenticated = await auth.use('api').check()
 
@@ -173,6 +176,7 @@ export default class UsersController {
         if (isAuthenticated) {
 
             const users = await User.all()
+            //console.log(users)
             response.status(200).send(users)
         } else {
             return ' não autenticado'

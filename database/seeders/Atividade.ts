@@ -8,31 +8,31 @@ export default class extends BaseSeeder {
     await Atividade.createMany([
       {
         "id": 1, 
-        "nome": "Vulnerabilidades", 
+        "nome": "vulnerabilities", 
         "acronimo": "vulnerabilities",
-        "quant":25
+        "quant":10
       },
       {
         "id": 2, 
-        "nome": "Subdominios", 
+        "nome": "subdomains", 
         "acronimo": "subdomains",
         "quant":5
       },
       {
         "id": 3, 
-        "nome": "Varredura de Porta", 
+        "nome": "portscan", 
         "acronimo":"portscan",
-        "quant":30
+        "quant":20
       },
       {
         "id": 4, 
-        "nome": "Technologias", 
+        "nome": "technologies", 
         "acronimo":"technologies",
-        "quant":50
+        "quant":7
       },
       {
         "id": 5, 
-        "nome": "Clickjancking", 
+        "nome": "clickjacking", 
         "acronimo":"clickjacking",
         "quant":15
       }
